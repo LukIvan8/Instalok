@@ -1,3 +1,4 @@
+from os import access
 from PyQt5 import QtWidgets, uic
 import sys
 from pyautogui import *
@@ -103,17 +104,18 @@ def autoBan(dimensions, ban, idc):
             )
 
 
-def eventLoop(ban, pick, idc):
+def eventLoop(ban, pick, idc, accept):
     while keyboard.is_pressed("=") == False:
         try:
             hwnd = win32gui.FindWindow(None, r"League of Legends")
             dimensions = win32gui.GetWindowRect(hwnd)
             checkDimensions(dimensions)
-            if checkClient(path_accept, dimensions) != None:
-                click(
-                    dimensions[0] + round((dimensions[2] - dimensions[0]) / 2),
-                    dimensions[1] + round((dimensions[3] - dimensions[1]) / 1.3),
-                )
+            if accept is True:
+                if checkClient(path_accept, dimensions) != None:
+                    click(
+                        dimensions[0] + round((dimensions[2] - dimensions[0]) / 2),
+                        dimensions[1] + round((dimensions[3] - dimensions[1]) / 1.3),
+                    )
             if checkClient(path_ban, dimensions) != None:
                 print("Found ban")
                 autoBan(dimensions, ban, idc)
@@ -143,9 +145,10 @@ class Ui(QtWidgets.QMainWindow):
             champ_ban = self.ban.text()
             champ_pick = self.pick.text()
             idc = self.idontcare.isChecked()
+            accept = self.accept.isChecked()
             self.close()
             try:
-                eventLoop(champ_ban, champ_pick, idc)
+                eventLoop(champ_ban, champ_pick, idc, accept)
             except Exception as e:
                 print(e)
             self.show()
