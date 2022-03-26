@@ -15,6 +15,7 @@ Riot games has no problem with this app👍
 - Sometimes caught pick/ban on streams 
 - Sometimes doesn't have enough time to click button if your connection is slow
 - Just goes crazy and bans another champion (happened 1 time in 100 tests)
+- Works only in 1600x900 window
 
 **MAKE SURE YOUR PATH TO APP DOESN'T CONTAIN ANY NON-ENGLISH CHARACTERS**
 
