@@ -26,36 +26,17 @@ def checkClient(state, dimensions):
 
 
 def checkDimensions(dimensions):
-    global path_ban
-    global path_accept
-    global path_bar
-    global path_block
-    global path_btn
+    global path_ban, path_bar, path_btn, path_block, path_accept
     dif = dimensions[2] - dimensions[0]
-    if dif == 1920:
-        path_ban = os.path.join(script_dir, "assets/ban0.png")
-        path_bar = os.path.join(script_dir, "assets/pick_bar0.png")
-        path_btn = os.path.join(script_dir, "assets/pick_btn0.png")
-        path_block = os.path.join(script_dir, "assets/block0.png")
-        path_accept = os.path.join(script_dir, "assets/accept0.png")
-    elif dif == 1600:
-        path_ban = os.path.join(script_dir, "assets/ban1.png")
-        path_bar = os.path.join(script_dir, "assets/pick_bar1.png")
-        path_btn = os.path.join(script_dir, "assets/pick_btn1.png")
-        path_block = os.path.join(script_dir, "assets/block1.png")
-        path_accept = os.path.join(script_dir, "assets/accept1.png")
-    elif dif == 1280:
-        path_ban = os.path.join(script_dir, "assets/ban2.png")
-        path_bar = os.path.join(script_dir, "assets/pick_bar2.png")
-        path_btn = os.path.join(script_dir, "assets/pick_btn2.png")
-        path_block = os.path.join(script_dir, "assets/block2.png")
-        path_accept = os.path.join(script_dir, "assets/accept2.png")
-    elif dif == 1024:
-        path_ban = os.path.join(script_dir, "assets/ban3.png")
-        path_bar = os.path.join(script_dir, "assets/pick_bar3.png")
-        path_btn = os.path.join(script_dir, "assets/pick_btn3.png")
-        path_block = os.path.join(script_dir, "assets/block3.png")
-        path_accept = os.path.join(script_dir, "assets/accept3.png")
+    handle = {1920: 0, 1600: 1, 1280: 2, 1024: 3}
+    for key, value in handle.items:
+        if key == dif:
+            checker = value
+    path_ban = os.path.join(script_dir, f"assets/ban{checker}.png")
+    path_bar = os.path.join(script_dir, f"assets/pick_bar{checker}.png")
+    path_btn = os.path.join(script_dir, f"assets/pick_btn{checker}.png")
+    path_block = os.path.join(script_dir, f"assets/block{checker}.png")
+    path_accept = os.path.join(script_dir, f"assets/accept{checker}.png")
 
 
 def autoPick(dimensions, pick):
